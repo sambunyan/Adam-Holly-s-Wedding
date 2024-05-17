@@ -6,13 +6,21 @@
             menuLink.classList.toggle('active');
         });
 
-        document.addEventListener = ('click', (e) => {
-            if (menu.target.querySelector !== ".menu" &&
-                menuLink.target.querySelector !== ".menuLink") {
-                menu.classList.remove('is-active');
-                menuLink.classList.remove('active');
-            };
+      // Close mobile navigation menu when clicking outside the menu
+    document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && !menuLink.contains(e.target)) {
+            menu.classList.remove('is-active');
+            menuLink.classList.remove('active');
+        }
+    });
+
+    // Close mobile navigation menu when clicking on a link
+    document.querySelectorAll('.nav_link').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('is-active');
+            menuLink.classList.remove('active');
         });
+    });
 
 const animate = document.querySelectorAll('.animation');
 
